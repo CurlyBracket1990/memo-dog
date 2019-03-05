@@ -6,7 +6,7 @@ export function setBreeds(dog) {
     return {
         type: SET_BREEDS,
         payload: {
-               breed: dog.breed,
+               name: dog.name,
                image: dog.image
         }
     }
@@ -18,7 +18,7 @@ export function gameData(num) {
             .then(response => {
                 const breeds = response.body.message.map((dog) => {
                     const dogBreed = dog.split('/')
-                    return { breed: dogBreed[4], image: dog }
+                    return { name: dogBreed[4], image: dog }
                 })
                 breeds.map((dog) => {
                    return dispatch(setBreeds(dog))
