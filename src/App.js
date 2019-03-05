@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import { Provider } from 'react-redux'
 import store from './store'
-import DogImage from './components/DogBreedList'
 import Landing from './components/Landing';
 import {Route} from 'react-router-dom'
 import GameContainer from './components/GameContainer';
