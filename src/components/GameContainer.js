@@ -1,15 +1,16 @@
 import * as React from 'react'
-import DogBreedList from './DogBreedList';
+import GameDataReciever from './GameDataReciever';
 
 export default class GameContainer extends React.Component {
     render () {
         return (
             <div >Lets the fun begin
 
-                <DogBreedList />
+                <GameDataReciever />
             </div>
 
         )
         
     }
 }
+
