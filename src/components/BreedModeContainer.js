@@ -1,11 +1,10 @@
 import * as React from 'react'
 import BreedMode from './BreedMode'
-import { connect } from 'react-redux'
 
 class BreedModeContainer extends React.Component {
     
     render () {
-        return <BreedMode breeds={ this.breeds }/>
+        return <BreedMode nextQuestion={this.props.nextQuestion} breeds={ this.props.breeds }/>
     }
 }
 

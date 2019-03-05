@@ -2,46 +2,71 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import * as React from 'react'
 
-export default function BreedMode() {
-    // props.breeds is a key:value pair 
-    var breeds = [ { "breed1": "https://images.dog.ceo/breeds/sheepdog-english/n02105641_10048.jpg"},
-                   { "breed2": "https://images.dog.ceo/breeds/sheepdog-english/n02105641_10048.jpg" },
-                    {"breed3": "https://images.dog.ceo/breeds/sheepdog-english/n02105641_10048.jpg"}
-    ]     
+export default class BreedMode extends React.Component {
 
-    return (
+    state = { name: this.props.breeds[0].name, image: this.props.breeds[0].image }
 
-        <div className="breed-name-game"> 
-        
-            <img 
-                src={ Object.values(breeds[0])[0] }
-                alt="dog image" 
-            />
-            <form> 
-            { breeds.map(breed => Object.keys(breed).map(name => 
-                    <div className="radio"> 
-                        <label key={name}>
-                            <input  type="radio"
+    submitAwnser = (e) => {
+        console.log(e.target.value)
+        if (e.target.value === this.state.name) {
+            setTimeout(() => {
+                this.props.nextQuestion("Correct")
+            }, 100)
+            //Add to streakcounter and totalcounter
+        } else {
+            setTimeout(() => {
+                this.props.nextQuestion("Wrong")
+            }, 100)
+            //Reset streakcounter
+        }
+    }
+
+    shuffle = (array) => {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        while (0 !== currentIndex) {
+
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+        return array;
+    }
+
+    render() {
+        return (
+
+            <div className="breed-name-game">
+
+                <img
+                    src={this.state.image}
+                    alt={this.state.name}
+                />
+                <form>
+                    {this.props.breeds.map(breed => {
+                        return (<div key={breed.name} className="radio">
+                            <label>
+                                <input onClick={this.submitAwnser} type="radio"
                                     name="dog-names"
-                                    value={ name }    
+                                    value={breed.name}
                                     // checked = {false}
                                     // onChange={ this.handleOptionChange} 
-                                    className="dog-names-input"   
-                            />
-                            { name }
-                        </label>
-                    </div>
-                ))}    
-                <div className="radio-submit">
-                    <button className="but btn-primary" type="submit">
-                        Save
-                    </button>
-                </div>
-                
-            </form>
+                                    className="dog-names-input"
+                                />
+                                {breed.name}
+                            </label>
+                        </div>
+                        )
+                    })}
 
-        </div>
-    )
+                </form>
+
+            </div>
+        )
+    }
 }
 
 
