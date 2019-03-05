@@ -1,4 +1,5 @@
 import * as React from 'react'
+import {Link} from "react-router-dom"
 
 export default class Landing extends React.Component {
     render() {
@@ -10,7 +11,7 @@ export default class Landing extends React.Component {
                     <li>2. Try to guess which breed is presented</li>
                     <li>3. Enjoy the process :))</li>
                 </ul>
-                <button>Start the game now!</button>
+                <Link to={'/game'}><button>Start the game now!</button></Link>
             </div>
         )
     }
