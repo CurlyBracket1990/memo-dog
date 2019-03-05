@@ -1,12 +1,16 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { gameData } from '../actions/gameData'
+import PictureModeContainer from './PictureModeContainer';
 
 class GameDataReciever extends Component {
-    state = { dogImage: null}
 
     componentDidMount() {
         this.props.gameData(3)
+    }
+
+    nextQuestion = (value) => {
+        console.log(value)
     }
 
     // selectRandoms = (obj) => {
@@ -28,35 +32,35 @@ class GameDataReciever extends Component {
 
     //     return indexArr
     //     }
-    
+
 
     // randomizer = (arr) => {
 
     //     return Math.floor(Math.random() * arr.length) - 1
-         
+
     // }
 
     render() {
 
-        return(
-            
+        return (
+
             <div className="dog-image">
                 <h1>Guess the breed</h1>
-                
-            {this.props.breeds.breeds && this.selectRandoms(this.props.breeds.breeds)}
-                {this.props.breeds.breeds === null && 'Loading...'}
+
+                {this.props.breeds && <PictureModeContainer nextQuestion={this.nextQuestion}/>}
+                {this.props.breeds === null && 'Loading...'}
             </div>
 
         )
     }
 }
-const mapStateToProps = (state) =>  {
+const mapStateToProps = (state) => {
     return {
         breeds: state.gameData
     }
-    
+
 
 }
 
 
-export default connect(mapStateToProps, {gameData})(GameDataReciever)
+export default connect(mapStateToProps, { gameData })(GameDataReciever)
