@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import { Provider } from 'react-redux'
 import store from './store'
-import DogImage from './components/DogImage'
+import DogImage from './components/DogBreedList'
 import Landing from './components/Landing';
+import {Route} from 'react-router-dom'
+import GameContainer from './components/GameContainer';
 
 class App extends Component {
  render() {
@@ -14,8 +16,8 @@ class App extends Component {
        
 
        <main>
- 	<Landing />
-         <DogImage />
+       <Route exact path="/" component={Landing} />
+       <Route exact path="/game" component={GameContainer} />
        </main>
      </div>
      </Provider>
