@@ -1,18 +1,16 @@
 import * as request from 'superagent'
+import { handleCorrect, handleWrong } from '../actions/ScoreAction'
 
 export const SET_BREEDS = 'SET_BREEDS'
 
-export function setBreeds(dog) {
+export function setBreeds(breeds) {
     return {
         type: SET_BREEDS,
-        payload: {
-               name: dog.name,
-               image: dog.image
-        }
+        payload: breeds
     }
 }
 
-export function gameData(num) {
+export function gameData(num, value, breed) {
     return function (dispatch) {
         request(`https://dog.ceo/api/breeds/image/random/${num}`)
             .then(response => {
@@ -20,9 +18,14 @@ export function gameData(num) {
                     const dogBreed = dog.split('/')
                     return { name: dogBreed[4], image: dog }
                 })
-                breeds.map((dog) => {
-                   return dispatch(setBreeds(dog))
-                })
+                if (value === "Correct") {
+                    dispatch(setBreeds(breeds))
+                    dispatch(handleCorrect(breed))
+                }
+                if (value === "Wrong") {
+                    dispatch(setBreeds(breeds))
+                    dispatch(handleWrong(breed))
+                }
             })
     }
 }

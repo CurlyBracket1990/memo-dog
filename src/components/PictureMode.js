@@ -8,11 +8,11 @@ export default class PictureMode extends React.Component {
         if (e.target.alt === this.state.name) {
             setTimeout(() => {
                 this.props.nextQuestion("Correct", this.state.name)
-            }, 100)
+            }, 2000)
         } else {
             setTimeout(() => {
                 this.props.nextQuestion("Wrong", this.state.name)
-            }, 100)
+            }, 2000)
         }
     }
 

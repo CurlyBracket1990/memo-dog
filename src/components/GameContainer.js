@@ -8,7 +8,7 @@ import store from '../store'
 class GameContainer extends React.Component {
 
     componentDidMount() {
-        store.dispatch(gameData(3))
+        store.dispatch(gameData(3, "Correct", "null"))
     }
 
     render() {
@@ -24,7 +24,7 @@ class GameContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        breeds: state.gameData,
+        breeds: state.breeds,
         totalScore: state.score.totalScore,
         streakCounter: state.score.streakCounter,
         totalQuestions: state.score.totalQuestions,

@@ -10,11 +10,11 @@ export default class BreedMode extends React.Component {
         if (e.target.value === this.state.name) {
             setTimeout(() => {
                 this.props.nextQuestion("Correct", this.state.name)
-            }, 100)
+            }, 2000)
         } else {
             setTimeout(() => {
                 this.props.nextQuestion("Wrong", this.state.name)
-            }, 100)
+            }, 2000)
         }
     }
 
