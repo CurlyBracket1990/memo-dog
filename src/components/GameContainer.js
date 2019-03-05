@@ -15,24 +15,21 @@ class GameContainer extends React.Component {
         return (
             <div>Guess the breed
                 <GameDataRender breeds={this.props.breeds} />
-                <ScoreContainer />
+                <ScoreContainer props={this.props}/>
             </div>
 
         )
     }
 }
 
-//here comes score state stuff
-// Amount of questions
-// Amount of correct answers
-// Streak score
-// Array with correct answer of seen questions 
-
-// State
-
 const mapStateToProps = (state) => {
     return {
-        breeds: state.gameData
+        breeds: state.gameData,
+        totalScore: state.score.totalScore,
+        streakCounter: state.score.streakCounter,
+        totalQuestions: state.score.totalQuestions,
+        thingy: state.score.thingy,
+        correctAnswers: state.score.correctAnswers
     }
 }
 
