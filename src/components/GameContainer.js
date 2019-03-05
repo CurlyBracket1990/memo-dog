@@ -12,7 +12,6 @@ export default class GameContainer extends React.Component {
             </div>
 
         )
-        
     }
 }
 
