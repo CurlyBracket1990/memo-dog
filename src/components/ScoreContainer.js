@@ -6,7 +6,7 @@ export default class ScoreContainer extends React.Component {
     render() {
         return(
             <div>
-                <Score totalScore={this.props.totalScore} correctAnswers={this.props.correctAnswers}/>
+                <Score props={this.props.props}/>
             </div>
         )
     }

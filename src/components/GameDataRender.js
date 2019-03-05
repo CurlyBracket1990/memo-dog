@@ -3,7 +3,7 @@ import PictureModeContainer from './PictureModeContainer';
 import BreedModeContainer from './BreedModeContainer';
 import { handleCorrect, handleWrong } from '../actions/ScoreAction'
 import store from '../store'
-import { gameData } from '../actions/gameData'
+// import { gameData } from '../actions/gameData'
 
 
 export default class GameDataRender extends React.Component {

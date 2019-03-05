@@ -1,9 +1,9 @@
-const initialState = {totalScore: null, streakCounter: null, totalQuestions: null, thingy: [], correctAnswers: null}
+const initialState = {totalScore: 0, streakCounter: 0, totalQuestions: 0, thingy: [], correctAnswers: 0}
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case "SET_SCORE": {
-      return {...state, totalScore: action.payload}
+      return {...state, totalScore: action.payload.score}
     }
     case "HANDLE_CORRECT": {
       return (

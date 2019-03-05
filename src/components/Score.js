@@ -2,10 +2,14 @@ import * as React from 'react'
 import {setScore} from '../actions/ScoreAction'
 import store from '../store';
 
-export default class Score extends React.Component {
+export default class Score extends React.Component {    
 
     calculatePercentage = () => {
-        return (this.props.correctAnswers / this.props.totalQuestions) * 100
+        const {correctAnswers, totalQuestions} = this.props.props
+        if(totalQuestions > 0){
+        return (correctAnswers / totalQuestions) * 100
+        }
+        return 0
     }
 
     componentDidMount = () => {
@@ -13,15 +17,17 @@ export default class Score extends React.Component {
     }
 
     render() {
-        console.log(this.props)
+        const {correctAnswers, totalQuestions, streakCounter} = this.props.props
         return (
             <div className='ScroreBox'>
                 <p>Your score:</p>
                 {this.calculatePercentage()}%
                 <p>Questions:</p>
-                {this.props.totalQuestions}
+                {totalQuestions}
                 <p>Correct answers:</p>
-                {this.props.correctAnswers}
+                {correctAnswers}
+                <p>Streak counter:</p>
+                {streakCounter}
             </div>
         )
     }
