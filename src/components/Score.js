@@ -1,14 +1,20 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
+import {setScore} from '../actions/ScoreAction'
 
 const data = {
     totalQuestions: 8,
     correctAnswers: 2
 }
 
-export default class Score extends React.Component {
+class Score extends React.Component {
 
     calculatePercentage = (data) => {
         return (data.correctAnswers / data.totalQuestions) * 100
+    }
+
+    componentDidMount = () => {
+        this.props.setScore(this.calculatePercentage(data))
     }
 
     render() {
@@ -25,3 +31,13 @@ export default class Score extends React.Component {
     }
 
 }
+
+const mapStateToProps = (state) =>  {
+    return {
+        score: state.score
+    }
+    
+
+}
+
+export default connect(mapStateToProps, {setScore})(Score)

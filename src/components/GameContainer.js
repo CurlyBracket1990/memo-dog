@@ -1,5 +1,5 @@
 import * as React from 'react'
-import GameDataReciever from './GameDataReciever';
+import GameDataRender from './GameDataRender';
 import ScoreContainer from './ScoreContainer';
 
 export default class GameContainer extends React.Component {
@@ -7,7 +7,7 @@ export default class GameContainer extends React.Component {
         return (
             <div >Lets the fun begin
 
-                <GameDataReciever />
+                <GameDataRender />
                 <ScoreContainer />
             </div>
 
