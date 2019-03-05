@@ -5,7 +5,7 @@ export default class PictureMode extends React.Component {
     state = { name: this.props.breeds[0].name, image: this.props.breeds[0].image }
 
     submitAwnser = (e) => {
-        if (e.target.value === this.state.name) {
+        if (e.target.alt === this.state.name) {
             setTimeout(() => {
                 this.props.nextQuestion("Correct")
             }, 100)
@@ -37,9 +37,9 @@ export default class PictureMode extends React.Component {
         return (
             <div>
                 <span>What breed is this?</span>
-                <img alt={this.state.name} src={this.state.image} /> {this.state.name}
+                <span>{this.state.name}</span>
                 {this.shuffle(this.props.breeds).map((breed, index) => {
-                    return <button key={index} onClick={this.submitAwnser} value={breed.name}>{breed.name}</button>
+                    return <img onClick={this.submitAwnser} key={index} alt={breed.name} src={breed.image} />
                 })}
             </div>
 
