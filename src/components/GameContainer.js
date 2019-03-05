@@ -6,7 +6,6 @@ export default class GameContainer extends React.Component {
     render () {
         return (
             <div >Lets the fun begin
-
                 <GameDataRender />
                 <ScoreContainer />
             </div>
