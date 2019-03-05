@@ -7,14 +7,12 @@ export default class PictureMode extends React.Component {
     submitAwnser = (e) => {
         if (e.target.alt === this.state.name) {
             setTimeout(() => {
-                this.props.nextQuestion("Correct")
+                this.props.nextQuestion("Correct", this.state.name)
             }, 100)
-            //Add to streakcounter and totalcounter
         } else {
             setTimeout(() => {
-                this.props.nextQuestion("Wrong")
+                this.props.nextQuestion("Wrong", this.state.name)
             }, 100)
-            //Reset streakcounter
         }
     }
 

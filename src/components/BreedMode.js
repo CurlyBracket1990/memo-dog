@@ -7,17 +7,14 @@ export default class BreedMode extends React.Component {
     state = { name: this.props.breeds[0].name, image: this.props.breeds[0].image }
 
     submitAwnser = (e) => {
-        console.log(e.target.value)
         if (e.target.value === this.state.name) {
             setTimeout(() => {
-                this.props.nextQuestion("Correct")
+                this.props.nextQuestion("Correct", this.state.name)
             }, 100)
-            //Add to streakcounter and totalcounter
         } else {
             setTimeout(() => {
-                this.props.nextQuestion("Wrong")
+                this.props.nextQuestion("Wrong", this.state.name)
             }, 100)
-            //Reset streakcounter
         }
     }
 
@@ -46,7 +43,7 @@ export default class BreedMode extends React.Component {
                     alt={this.state.name}
                 />
                 <form>
-                    {this.props.breeds.map(breed => {
+                    {this.shuffle(this.props.breeds).map(breed => {
                         return (<div key={breed.name} className="radio">
                             <label>
                                 <input onClick={this.submitAwnser} type="radio"

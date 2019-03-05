@@ -1,43 +1,35 @@
 import * as React from 'react'
-import { connect } from 'react-redux'
 import {setScore} from '../actions/ScoreAction'
+import store from '../store';
 
-const data = {
-    totalQuestions: 8,
-    correctAnswers: 2
-}
+export default class Score extends React.Component {    
 
-class Score extends React.Component {
-
-    calculatePercentage = (data) => {
-        return (data.correctAnswers / data.totalQuestions) * 100
+    calculatePercentage = () => {
+        const {correctAnswers, totalQuestions} = this.props.props
+        if(totalQuestions > 0){
+        return (correctAnswers / totalQuestions) * 100
+        }
+        return 0
     }
 
     componentDidMount = () => {
-        this.props.setScore(this.calculatePercentage(data))
+        store.dispatch(setScore(this.calculatePercentage()))
     }
 
     render() {
+        const {correctAnswers, totalQuestions, streakCounter} = this.props.props
         return (
             <div className='ScroreBox'>
                 <p>Your score:</p>
-                {this.calculatePercentage(data)}
+                {this.calculatePercentage()}%
                 <p>Questions:</p>
-                {data.totalQuestions}
+                {totalQuestions}
                 <p>Correct answers:</p>
-                {data.correctAnswers}
+                {correctAnswers}
+                <p>Streak counter:</p>
+                {streakCounter}
             </div>
         )
     }
 
 }
-
-const mapStateToProps = (state) =>  {
-    return {
-        score: state.score
-    }
-    
-
-}
-
-export default connect(mapStateToProps, {setScore})(Score)
