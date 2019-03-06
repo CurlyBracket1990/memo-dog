@@ -3,10 +3,10 @@ import PictureModeContainer from './PictureModeContainer';
 import BreedModeContainer from './BreedModeContainer';
 import { handleCorrect, handleWrong } from '../actions/ScoreAction'
 import store from '../store'
-// import { gameData } from '../actions/gameData'
+import { connect } from 'react-redux'
 
 
-export default class GameDataRender extends React.Component {
+class GameDataRender extends React.Component {
 
     nextQuestion = (value, breed) => {
         if (value === "Correct") {
@@ -34,3 +34,12 @@ export default class GameDataRender extends React.Component {
 
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        breeds: state.gameData
+    }
+}
+
+
+export default connect(mapStateToProps)(GameDataRender)

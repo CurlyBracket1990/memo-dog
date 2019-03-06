@@ -10,11 +10,21 @@ export default class BreedMode extends React.Component {
         if (e.target.value === this.state.name) {
             setTimeout(() => {
                 this.props.nextQuestion("Correct", this.state.name)
-            }, 100)
+                const shuffledArray = this.shuffle(this.props.breeds)
+                this.setState({
+                    name: shuffledArray[0].name,
+                    image: shuffledArray[0].image
+                })
+            }, 200)
         } else {
             setTimeout(() => {
                 this.props.nextQuestion("Wrong", this.state.name)
-            }, 100)
+                const shuffledArray = this.shuffle(this.props.breeds)
+                this.setState({
+                    name: shuffledArray[0].name,
+                    image: shuffledArray[0].image
+                })
+            }, 200)
         }
     }
 

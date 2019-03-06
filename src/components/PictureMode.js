@@ -8,11 +8,21 @@ export default class PictureMode extends React.Component {
         if (e.target.alt === this.state.name) {
             setTimeout(() => {
                 this.props.nextQuestion("Correct", this.state.name)
-            }, 100)
+                const shuffledArray = this.shuffle(this.props.breeds)
+                this.setState({
+                    name: shuffledArray[0].name,
+                    image: shuffledArray[0].image
+                })
+            }, 200)
         } else {
             setTimeout(() => {
                 this.props.nextQuestion("Wrong", this.state.name)
-            }, 100)
+                const shuffledArray = this.shuffle(this.props.breeds)
+                this.setState({
+                    name: shuffledArray[0].name,
+                    image: shuffledArray[0].image
+                })
+            }, 200)
         }
     }
 
@@ -35,7 +45,6 @@ export default class PictureMode extends React.Component {
         console.log("Picture got rendered")
         return (
             <div>
-                <span>What breed is this?</span>
                 <span>{this.state.name}</span>
                 {this.shuffle(this.props.breeds).map((breed, index) => {
                     return <img onClick={this.submitAwnser} key={index} alt={breed.name} src={breed.image} />

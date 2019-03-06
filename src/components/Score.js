@@ -1,7 +1,6 @@
 import * as React from 'react'
 import {setScore} from '../actions/ScoreAction'
 import store from '../store';
-import { gameData } from '../actions/gameData'
 
 export default class Score extends React.Component {    
 
@@ -13,22 +12,26 @@ export default class Score extends React.Component {
         return 0
     }
 
-    componentDidMount = () => {
-        store.dispatch(setScore(this.calculatePercentage()))
-    }
+    // componentDidMount = () => {
+    //     store.dispatch(setScore(this.calculatePercentage()))
+    // }
 
     componentDidUpdate(prevProps){
+        if(this.props.props.totalScore !== prevProps.totalScore){
+            store.dispatch(setScore(this.calculatePercentage()))
+        }
         if(this.props.props.streakCounter !== prevProps.streakCounter && this.props.props.streakCounter === 3) {
             this.props.levelUp()
         }
     }
 
     render() {
-        const {correctAnswers, totalQuestions, streakCounter} = this.props.props
+        console.log(this.props)
+        const {correctAnswers, totalQuestions, streakCounter, totalScore} = this.props.props
         return (
             <div className='ScroreBox'>
                 <p>Your score:</p>
-                {this.calculatePercentage()}%
+                {totalScore}%
                 <p>Questions:</p>
                 {totalQuestions}
                 <p>Correct answers:</p>

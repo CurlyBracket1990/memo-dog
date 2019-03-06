@@ -2,13 +2,10 @@ import * as request from 'superagent'
 
 export const SET_BREEDS = 'SET_BREEDS'
 
-export function setBreeds(dog) {
+export function setBreeds(breeds) {
     return {
         type: SET_BREEDS,
-        payload: {
-               name: dog.name,
-               image: dog.image
-        }
+        payload: breeds
     }
 }
 
@@ -20,9 +17,7 @@ export function gameData(num) {
                     const dogBreed = dog.split('/')
                     return { name: dogBreed[4], image: dog }
                 })
-                breeds.map((dog) => {
-                   return dispatch(setBreeds(dog))
-                })
+                dispatch(setBreeds(breeds))
             })
     }
 }
