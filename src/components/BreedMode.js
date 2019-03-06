@@ -45,13 +45,13 @@ export default class BreedMode extends React.Component {
                     src={this.state.image}
                     alt={this.state.name}
                 />
+                <div className='answersBox'>
                 {this.shuffle(this.props.breeds).map(breed => {
                     return (
-                        <div key={breed.name}>
-                            <button onClick={this.submitAwnser} value={breed.name}>{breed.name}</button>
-                        </div>
+                            <button  key={breed.name} onClick={this.submitAwnser} value={breed.name}>{breed.name}</button>
                     )
                 })}
+                </div>
 
             </div>
         )

@@ -47,7 +47,7 @@ export default class PictureMode extends React.Component {
         console.log("Picture got rendered")
         return (
             <div>
-                <span>{this.state.name}</span>
+                <span className='title'>{this.state.name}</span>
                 {this.shuffle(this.props.breeds).map((breed, index) => {
                     return <img onClick={this.submitAwnser} key={index} alt={breed.name} src={breed.image} />
                 })}

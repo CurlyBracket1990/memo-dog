@@ -7,7 +7,7 @@ export default class Score extends React.Component {
     calculatePercentage = () => {
         const {correctAnswers, totalQuestions} = this.props.props
         if(totalQuestions > 0){
-        return (correctAnswers / totalQuestions) * 100
+        return ((correctAnswers / totalQuestions) * 100).toFixed(0)
         }
         return 0
     }
@@ -28,7 +28,7 @@ export default class Score extends React.Component {
     render() {
         const {correctAnswers, totalQuestions, streakCounter, totalScore} = this.props.props
         return (
-            <div className='ScroreBox'>
+            <div className='ScoreBox'>
                 <p>Your score:</p>
                 {totalScore}%
                 <p>Questions:</p>

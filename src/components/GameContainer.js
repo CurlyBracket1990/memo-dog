@@ -25,10 +25,10 @@ export default class GameContainer extends React.Component {
     render() {
         console.log("gamecontainer got rendered")
         return (
-            <div>Guess the breed
+            <div className='gameContainer'>Guess the breed
                 <GameDataRender overWriteBreeds={this.overWriteBreeds} breeds={this.props.breeds} />
                 <ScoreContainer levelUp={this.levelUp} props={this.props}/>
-                <Link to={'/end'}><button>End the game</button></Link>
+                <Link to={'/end'}><button className='endBtn'>End the game</button></Link>
                 
             </div>
         )
