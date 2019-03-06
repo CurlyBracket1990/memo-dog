@@ -7,21 +7,23 @@ export default class PictureMode extends React.Component {
     submitAwnser = (e) => {
         if (e.target.alt === this.state.name) {
             setTimeout(() => {
+                this.props.overWriteBreeds(3)
                 this.props.nextQuestion("Correct", this.state.name)
-                const shuffledArray = this.shuffle(this.props.breeds)
-                this.setState({
-                    name: shuffledArray[0].name,
-                    image: shuffledArray[0].image
-                })
+                // const shuffledArray = this.shuffle(this.props.breeds)
+                // this.setState({
+                //     name: shuffledArray[0].name,
+                //     image: shuffledArray[0].image
+                // })
             }, 200)
         } else {
             setTimeout(() => {
+                this.props.overWriteBreeds(3)
                 this.props.nextQuestion("Wrong", this.state.name)
-                const shuffledArray = this.shuffle(this.props.breeds)
-                this.setState({
-                    name: shuffledArray[0].name,
-                    image: shuffledArray[0].image
-                })
+                // const shuffledArray = this.shuffle(this.props.breeds)
+                // this.setState({
+                //     name: shuffledArray[0].name,
+                //     image: shuffledArray[0].image
+                // })
             }, 200)
         }
     }
