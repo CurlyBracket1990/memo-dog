@@ -10,11 +10,21 @@ export default class BreedMode extends React.Component {
         if (e.target.value === this.state.name) {
             setTimeout(() => {
                 this.props.nextQuestion("Correct", this.state.name)
-            }, 100)
+                const shuffledArray = this.shuffle(this.props.breeds)
+                this.setState({
+                    name: shuffledArray[0].name,
+                    image: shuffledArray[0].image
+                })
+            }, 200)
         } else {
             setTimeout(() => {
                 this.props.nextQuestion("Wrong", this.state.name)
-            }, 100)
+                const shuffledArray = this.shuffle(this.props.breeds)
+                this.setState({
+                    name: shuffledArray[0].name,
+                    image: shuffledArray[0].image
+                })
+            }, 200)
         }
     }
 
@@ -34,6 +44,7 @@ export default class BreedMode extends React.Component {
     }
 
     render() {
+        console.log("Breed got rendered")
         return (
 
             <div className="breed-name-game">
@@ -42,24 +53,13 @@ export default class BreedMode extends React.Component {
                     src={this.state.image}
                     alt={this.state.name}
                 />
-                <form>
-                    {this.shuffle(this.props.breeds).map(breed => {
-                        return (<div key={breed.name} className="radio">
-                            <label>
-                                <input onClick={this.submitAwnser} type="radio"
-                                    name="dog-names"
-                                    value={breed.name}
-                                    // checked = {false}
-                                    // onChange={ this.handleOptionChange} 
-                                    className="dog-names-input"
-                                />
-                                {breed.name}
-                            </label>
+                {this.shuffle(this.props.breeds).map(breed => {
+                    return (
+                        <div key={breed.name}>
+                            <button onClick={this.submitAwnser} value={breed.name}>{breed.name}</button>
                         </div>
-                        )
-                    })}
-
-                </form>
+                    )
+                })}
 
             </div>
         )

@@ -22,6 +22,13 @@ export default (state = initialState, action = {}) => {
         thingy: state.thingy.concat(action.payload.name)}
     )
    }
+   case "RESET_STREAK": {
+    return (
+     {...state, 
+       streakCounter: 0, 
+       }
+   )
+  }
     default:
       return state
   }
