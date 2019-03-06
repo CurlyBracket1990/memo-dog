@@ -4,6 +4,7 @@ import ScoreContainer from './ScoreContainer';
 import { gameData, overWriteBreeds } from '../actions/gameData'
 import store from '../store'
 import { resetStreak } from '../actions/ScoreAction';
+import {Link} from "react-router-dom"
 
 export default class GameContainer extends React.Component {
 
@@ -27,6 +28,8 @@ export default class GameContainer extends React.Component {
             <div>Guess the breed
                 <GameDataRender overWriteBreeds={this.overWriteBreeds} breeds={this.props.breeds} />
                 <ScoreContainer levelUp={this.levelUp} props={this.props}/>
+                <Link to={'/end'}><button>End the game</button></Link>
+                
             </div>
         )
     }
