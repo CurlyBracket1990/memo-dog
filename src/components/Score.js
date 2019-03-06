@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {setScore} from '../actions/ScoreAction'
 import store from '../store';
+import { gameData } from '../actions/gameData'
 
 export default class Score extends React.Component {    
 
@@ -14,6 +15,12 @@ export default class Score extends React.Component {
 
     componentDidMount = () => {
         store.dispatch(setScore(this.calculatePercentage()))
+    }
+
+    componentDidUpdate(prevProps){
+        if(this.props.props.streakCounter !== prevProps.streakCounter && this.props.props.streakCounter === 3) {
+            this.props.levelUp()
+        }
     }
 
     render() {

@@ -4,6 +4,7 @@ import ScoreContainer from './ScoreContainer';
 import { connect } from 'react-redux'
 import { gameData } from '../actions/gameData'
 import store from '../store'
+import { resetStreak } from '../actions/ScoreAction';
 
 class GameContainer extends React.Component {
 
@@ -11,13 +12,17 @@ class GameContainer extends React.Component {
         store.dispatch(gameData(3))
     }
 
+    levelUp = () => {
+        store.dispatch(resetStreak())
+        store.dispatch(gameData(3))
+    }
+
     render() {
         return (
             <div>Guess the breed
                 <GameDataRender breeds={this.props.breeds} />
-                <ScoreContainer props={this.props}/>
+                <ScoreContainer levelUp={this.levelUp} props={this.props}/>
             </div>
-
         )
     }
 }

@@ -6,7 +6,7 @@ export default class ScoreContainer extends React.Component {
     render() {
         return(
             <div>
-                <Score props={this.props.props}/>
+                <Score levelUp={this.props.levelUp} props={this.props.props}/>
             </div>
         )
     }

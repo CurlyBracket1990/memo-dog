@@ -32,6 +32,7 @@ export default class PictureMode extends React.Component {
     }
 
     render() {
+        console.log("Picture got rendered")
         return (
             <div>
                 <span>What breed is this?</span>
