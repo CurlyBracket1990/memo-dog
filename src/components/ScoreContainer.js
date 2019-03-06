@@ -8,6 +8,7 @@ class ScoreContainer extends React.Component {
         return(
             <div>
                 <Score levelUp={this.props.levelUp} props={this.props}/>
+                
             </div>
         )
     }

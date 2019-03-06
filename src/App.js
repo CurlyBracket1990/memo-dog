@@ -5,6 +5,7 @@ import store from './store'
 import Landing from './components/Landing';
 import {Route} from 'react-router-dom'
 import GameContainer from './components/GameContainer';
+import EndGame from './components/EndGame';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <main>
           <Route exact path="/" component={Landing} />
           <Route exact path="/game" component={GameContainer} />
+          <Route exact path="/end" component={EndGame} />
           </main>
         </div>
      </Provider>
