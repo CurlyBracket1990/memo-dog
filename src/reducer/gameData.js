@@ -3,6 +3,9 @@ export default (state = [], action = {}) => {
       case "SET_BREEDS": {
         return state.concat(action.payload)
       }
+      case "OVERWRITE_BREEDS": {
+        return action.payload
+      }
       default:
         return state
     }

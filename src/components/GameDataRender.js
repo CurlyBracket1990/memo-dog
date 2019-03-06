@@ -5,7 +5,6 @@ import { handleCorrect, handleWrong } from '../actions/ScoreAction'
 import store from '../store'
 import { connect } from 'react-redux'
 
-
 class GameDataRender extends React.Component {
 
     nextQuestion = (value, breed) => {
@@ -15,7 +14,6 @@ class GameDataRender extends React.Component {
         if (value === "Wrong") {
             store.dispatch(handleWrong(breed))
         }
-        // store.dispatch(gameData(3))
     }
 
     randomize() {
@@ -27,8 +25,18 @@ class GameDataRender extends React.Component {
         return (
             <div >
                 {this.props.breeds === [] && 'Loading...'}
-                {randomNum <= 0.5 && this.props.breeds.length > 0 && <BreedModeContainer breeds={this.props.breeds} nextQuestion={this.nextQuestion} />}
-                {randomNum > 0.5 && this.props.breeds.length > 0 && <PictureModeContainer breeds={this.props.breeds} nextQuestion={this.nextQuestion} />}
+                {randomNum <= 0.5 && this.props.breeds.length > 0 &&
+                    <BreedModeContainer
+                    overWriteBreeds={this.props.overWriteBreeds}
+                        breeds={this.props.breeds}
+                        nextQuestion={this.nextQuestion}
+                    />}
+                {randomNum > 0.5 && this.props.breeds.length > 0 &&
+                    <PictureModeContainer
+                    overWriteBreeds={this.props.overWriteBreeds}
+                        breeds={this.props.breeds}
+                        nextQuestion={this.nextQuestion}
+                    />}
             </div>
         )
 

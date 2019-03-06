@@ -26,7 +26,6 @@ export default class Score extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         const {correctAnswers, totalQuestions, streakCounter, totalScore} = this.props.props
         return (
             <div className='ScroreBox'>
