@@ -17,10 +17,16 @@ export function overWriteBreeds(num) {
         request(`https://dog.ceo/api/breeds/image/random/${num}`)
             .then(response => {
                 const breeds = response.body.message.map((dog) => {
-                    const dogBreed = dog.split('/')
-                    return { name: dogBreed[4], image: dog }
+                    const rawDogBreed = dog.split('/')[4]
+                    const dogBreed = (rawDogBreed.includes("-") 
+                    ? rawDogBreed.split('-')[0]
+                    : rawDogBreed)
+                    const formattedDogBreed = dogBreed.slice(0,1).toUpperCase() 
+                                         + dogBreed.slice(1,)
+                    return { name: formattedDogBreed, image: dog }
                 })
                 dispatch(newData(breeds))
             })
     }
 }
+
