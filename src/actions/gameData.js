@@ -8,7 +8,7 @@ export const REMOVE_BREED = 'REMOVE_BREED'
 export function newData(breeds) {
     return {
         type: OVERWRITE_BREEDS,
-        payload: {breeds, correctAnswer: breeds[0]}
+        payload: { breeds, correctAnswer: breeds[0] }
     }
 }
 

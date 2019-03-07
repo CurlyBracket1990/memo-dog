@@ -1,7 +1,7 @@
 import * as React from 'react'
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import { connect } from 'react-redux'
-import {cleanStats} from '../actions/ScoreAction'
+import { cleanStats } from '../actions/ScoreAction'
 import store from '../store'
 
 class EndGame extends React.Component {
@@ -21,7 +21,7 @@ class EndGame extends React.Component {
             </div>
         )
     }
-    
+
 }
 
 const mapStateToProps = (state) => {

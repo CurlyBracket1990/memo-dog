@@ -1,7 +1,7 @@
 import * as React from 'react'
 import ModeContainer from './ModeContainer';
 import ScoreContainer from './ScoreContainer';
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export default class GameContainer extends React.Component {
 
