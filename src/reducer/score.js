@@ -32,6 +32,9 @@ export default (state = initialState, action = {}) => {
   case "LEVEL_SELECT": {
     return {...state, level: action.payload}
   }
+  case "CLEAN_STATS": {
+    return initialState
+  }
     default:
       return state
   }

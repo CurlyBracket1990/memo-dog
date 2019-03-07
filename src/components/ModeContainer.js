@@ -1,11 +1,13 @@
 import * as React from 'react'
+import BreedMode from './BreedMode'
 import PictureMode from './PictureMode'
+import HintContainer from './HintContainer'
 import { connect } from 'react-redux'
+import store from '../store'
 import { overWriteBreeds } from '../actions/gameData'
 import { handleCorrect, handleWrong } from '../actions/ScoreAction';
-import store from '../store'
 
-class PictureModeContainer extends React.Component {
+class BreedModeContainer extends React.Component {
 
     overWriteBreeds = (num) => {
         store.dispatch(overWriteBreeds(num))
@@ -24,8 +26,22 @@ class PictureModeContainer extends React.Component {
         store.dispatch(overWriteBreeds(3))
     }
 
-    submitAnswer = (e) => {
+    submitAnswerPicture = (e) => {
         if (e.target.alt === this.props.correctAnswer.name) {
+            setTimeout(() => {
+                this.overWriteBreeds(this.props.score.level*3)
+                this.nextQuestion("Correct", this.props.correctAnswer.name)
+            }, 200)
+        } else {
+            setTimeout(() => {
+                this.overWriteBreeds(this.props.score.level*3)
+                this.nextQuestion("Wrong", this.props.correctAnswer.name)
+            }, 200)
+        }
+    } 
+
+    submitAnswerBreed = (e) => {
+        if (e.target.value === this.props.correctAnswer.name) {
             setTimeout(() => {
                 this.overWriteBreeds(this.props.score.level*3)
                 this.nextQuestion("Correct", this.props.correctAnswer.name)
@@ -52,21 +68,32 @@ class PictureModeContainer extends React.Component {
         }
         return array;
     }
-    
+
     render() {
+        console.log("Modecontainer rendered")
+        const randomNum = Math.random()
         return (
             <div>
-                {this.props.breeds.length > 0 && <PictureMode
+                {randomNum > 0.5 && this.props.breeds.length > 0 && <BreedMode
                 level={this.props.score.level}
                 overWriteBreeds={this.overWriteBreeds}
                 correctAnswer={this.props.correctAnswer}
                 breeds={this.shuffle(this.props.breeds.map(a => ({...a})))}
-                submitAnswer={this.submitAnswer}
+                submitAnswer={this.submitAnswerBreed}
             />}
+            {randomNum <= 0.5 && this.props.breeds.length > 0 && <PictureMode
+                level={this.props.score.level}
+                overWriteBreeds={this.overWriteBreeds}
+                correctAnswer={this.props.correctAnswer}
+                breeds={this.shuffle(this.props.breeds.map(a => ({...a})))}
+                submitAnswer={this.submitAnswerPicture}
+            />}
+            <HintContainer />
             </div>
         )
     }
 }
+
 
 const mapStateToProps = (state) => {
     return {
@@ -77,5 +104,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(PictureModeContainer)
-
+export default connect(mapStateToProps)(BreedModeContainer)

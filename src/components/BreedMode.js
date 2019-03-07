@@ -5,8 +5,8 @@ import * as React from 'react'
 export default class BreedMode extends React.Component {
 
     render() {
+        console.log("Breedmode rendered")
         return (
-
             <div className="breed-name-game">
 
                 <img
@@ -15,8 +15,8 @@ export default class BreedMode extends React.Component {
                 />
                 {this.props.breeds.map((breed) => {
                     return (
-                        <div className="answersBox">
-                            <input key={breed.name} type="button" onClick={this.props.submitAnswer} value={breed.name}/>
+                        <div key={breed.name} className="answersBox">
+                            <input type="button" onClick={this.props.submitAnswer} value={breed.name}/>
                         </div>
                     )
                 })}

@@ -3,6 +3,7 @@ export const HANDLE_CORRECT = 'HANDLE_CORRECT'
 export const HANDLE_WRONG = 'HANDLE_WRONG'
 export const RESET_STREAK = 'RESET_STREAK'
 export const LEVEL_SELECT = 'LEVEL_SELECT'
+export const CLEAN_STATS = 'CLEAN_STATS'
 
 export function setScore(score) {
     return {
@@ -38,5 +39,11 @@ export function handleWrong(name) {
         payload: {
             name
         }
+    }
+}
+
+export function cleanStats() {
+    return {
+        type: CLEAN_STATS
     }
 }

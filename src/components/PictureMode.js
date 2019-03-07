@@ -3,6 +3,7 @@ import * as React from 'react'
 export default class PictureMode extends React.Component {
 
     render() {
+        console.log("Picturemode rendered")
         return (
             <div>
                 <span className='title'>{this.props.correctAnswer.name}</span>
