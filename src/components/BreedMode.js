@@ -15,11 +15,12 @@ export default class BreedMode extends React.Component {
                 />
                 {this.props.breeds.map((breed) => {
                     return (
-                        <div key={breed.name}>
-                            <input type="button" onClick={this.props.submitAnswer} value={breed.name}/>
+                        <div className="answersBox">
+                            <input key={breed.name} type="button" onClick={this.props.submitAnswer} value={breed.name}/>
                         </div>
                     )
                 })}
+                </div>
 
             </div>
         )
