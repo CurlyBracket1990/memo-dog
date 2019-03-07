@@ -21,8 +21,6 @@ export default class BreedMode extends React.Component {
                     )
                 })}
                 </div>
-
-            </div>
         )
     }
 }
