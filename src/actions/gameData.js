@@ -3,11 +3,12 @@ import * as request from 'superagent'
 export const SET_BREEDS = 'SET_BREEDS'
 export const OVERWRITE_BREEDS = 'OVERWRITE_BREEDS'
 export const CORRECT_ANSWER = 'CORRECT_ANSWER'
+export const REMOVE_BREED = 'REMOVE_BREED'
 
 export function newData(breeds) {
     return {
         type: OVERWRITE_BREEDS,
-        payload: {breeds, correctAnswer: breeds[0]}
+        payload: { breeds, correctAnswer: breeds[0] }
     }
 }
 

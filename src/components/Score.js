@@ -7,7 +7,7 @@ export default class Score extends React.Component {
         return (
             <div className='ScoreBox'>
                 <p>Your score:</p>
-                {totalScore.toFixed(0)}%
+                {Math.round(totalScore)}%
                 <p>Questions:</p>
                 {totalQuestions}
                 <p>Correct answers:</p>
