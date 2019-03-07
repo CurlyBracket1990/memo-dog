@@ -7,10 +7,11 @@ Check out the demo [here](https://github.com/CurlyBracket1990/memo-dog)
 - Different question types:
     1. By name of breed
     2. By breed image
+- Increasing levels of difficulty
 - A score summary displaying:
     - Score percentage 
     - questions answered
     - correctly answered questions
     - winning streak counter
-- A hint 
-- The option for the player to play the game using their keyboard. 
+- Hint option
+- Keyboard play option
