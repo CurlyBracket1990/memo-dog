@@ -9,10 +9,15 @@ export default class BreedMode extends React.Component {
 
     componentDidMount() {
         this.setIncorrect()
+        document.addEventListener('keydown', this.handleKeyDown);
     }
 
-    componentDidUpdate(prevProps){
-        if(this.props.correctAnswer.image !== prevProps.correctAnswer.image){
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleKeyDown);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.correctAnswer.image !== prevProps.correctAnswer.image) {
             this.setIncorrect()
             this.setState({
                 opacity: 1
@@ -35,8 +40,20 @@ export default class BreedMode extends React.Component {
         })
     }
 
+    handleKeyDown = (e) => {
+        if (e.key === "1") {
+            this.props.submitAnswerWithKey(this.ref1)
+        }
+        if (e.key === "2") {
+            this.props.submitAnswerWithKey(this.ref2)
+        }
+        if (e.key === "3") {
+            this.props.submitAnswerWithKey(this.ref3)
+        }
+        return null
+    }
+
     render() {
-        console.log("Breedmode rendered")
         return (
             <div className="breed-name-game">
 
@@ -44,14 +61,19 @@ export default class BreedMode extends React.Component {
                     src={this.props.correctAnswer.image}
                     alt={this.props.correctAnswer.name}
                 />
-                {this.props.breeds.map((breed, index) => 
+                {this.props.breeds.map((breed, index) =>
                     breed.name === this.state.incorrectAnswer.name ?
-                        <div style={{ opacity: this.state.opacity }} key={index + 1} className="answersBox">
-                            <input type="button" onClick={this.props.submitAnswer} value={breed.name} />
+                        <div
+                            style={{ opacity: this.state.opacity }}
+                            key={index + 1} className="answersBox">
+
+                            <input ref={(ref) => this[`ref${index + 1}`] = ref} type="button" onClick={this.props.submitAnswer} value={breed.name} />
                         </div>
                         :
-                        <div key={index + 1} className="answersBox">
-                            <input type="button" onClick={this.props.submitAnswer} value={breed.name} />
+                        <div
+                            key={index + 1} className="answersBox">
+
+                            <input ref={(ref) => this[`ref${index + 1}`] = ref} type="button" onClick={this.props.submitAnswer} value={breed.name} />
                         </div>
                 )}
                 <HintContainer hintHighlight={this.hintHighlight} />

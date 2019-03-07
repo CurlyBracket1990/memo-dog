@@ -53,6 +53,36 @@ class BreedModeContainer extends React.Component {
         }
     }
 
+    submitAnswerBreedWithKey = (e) => {
+        if (e.value === this.props.correctAnswer.name) {
+            setTimeout(() => {
+                this.overWriteBreeds(this.props.score.level * 3)
+                this.nextQuestion("Correct", this.props.correctAnswer.name)
+            }, 200)
+        } else {
+            setTimeout(() => {
+                this.overWriteBreeds(this.props.score.level * 3)
+                this.nextQuestion("Wrong", this.props.correctAnswer.name)
+            }, 200)
+        }
+        return null
+    }
+
+    submitAnswerPictureWithKey = (e) => {
+        if (e.alt === this.props.correctAnswer.name) {
+            setTimeout(() => {
+                this.overWriteBreeds(this.props.score.level * 3)
+                this.nextQuestion("Correct", this.props.correctAnswer.name)
+            }, 200)
+        } else {
+            setTimeout(() => {
+                this.overWriteBreeds(this.props.score.level * 3)
+                this.nextQuestion("Wrong", this.props.correctAnswer.name)
+            }, 200)
+        }
+        return null
+    }
+
     shuffle = (array) => {
         let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -68,23 +98,7 @@ class BreedModeContainer extends React.Component {
         return array;
     }
 
-    setIncorrect = () => {
-        const incorrect = this.props.breeds.filter((breed) =>
-            breed.name !== this.props.correctAnswer.name
-        )
-        this.setState({
-            incorrectAnswer: incorrect[Math.floor(Math.random() * incorrect.length)]
-        })
-    }
-
-    hintHighlight = () => {
-        this.setState({
-            opacity: 0.3
-        })
-    }
-
     render() {
-        console.log("Modecontainer rendered")
         const randomNum = Math.random()
         return (
             <div>
@@ -95,6 +109,7 @@ class BreedModeContainer extends React.Component {
                         correctAnswer={this.props.correctAnswer}
                         breeds={this.shuffle(this.props.breeds.map(a => ({ ...a })))}
                         submitAnswer={this.submitAnswerBreed}
+                        submitAnswerWithKey={this.submitAnswerBreedWithKey}
                     />}
                 {randomNum <= 0.5 && this.props.breeds.length > 0 &&
                     <PictureMode
@@ -104,6 +119,7 @@ class BreedModeContainer extends React.Component {
                         correctAnswer={this.props.correctAnswer}
                         breeds={this.shuffle(this.props.breeds.map(a => ({ ...a })))}
                         submitAnswer={this.submitAnswerPicture}
+                        submitAnswerWithKey={this.submitAnswerPictureWithKey}
                     />}
             </div>
         )
