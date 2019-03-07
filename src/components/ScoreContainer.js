@@ -1,13 +1,40 @@
 import * as React from 'react'
 import Score from './Score'
 import { connect } from 'react-redux'
+import store from '../store'
+import { resetStreak, levelSelect, setScore} from '../actions/ScoreAction';
+import { overWriteBreeds } from '../actions/gameData'
+
 
 class ScoreContainer extends React.Component {
+
+    calculatePercentage = () => {
+        const {correctAnswers, totalQuestions} = this.props.score
+        if(totalQuestions > 0){
+        return (correctAnswers / totalQuestions) * 100
+        }
+        return 0
+    }
+
+    componentDidUpdate(prevProps){
+        if(this.props.score.totalQuestions !== prevProps.score.totalQuestions){
+            store.dispatch(setScore(this.calculatePercentage()))
+        }
+        if(this.props.score.streakCounter !== prevProps.score.streakCounter && this.props.score.streakCounter === 10) {
+            this.levelUp(this.props.score.level+1)
+        }
+    }
+
+    levelUp = (num) => {
+        store.dispatch(resetStreak())
+        store.dispatch(levelSelect(num))
+        store.dispatch(overWriteBreeds(num * 3))
+    }
 
     render() {
         return(
             <div>
-                <Score levelUp={this.props.levelUp} props={this.props}/>
+                <Score levelUp={this.levelUp} score={this.props.score}/>
             </div>
         )
     }
@@ -16,11 +43,7 @@ class ScoreContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        totalScore: state.score.totalScore,
-        streakCounter: state.score.streakCounter,
-        totalQuestions: state.score.totalQuestions,
-        thingy: state.score.thingy,
-        correctAnswers: state.score.correctAnswers
+        score: state.score,
     }
 }
 

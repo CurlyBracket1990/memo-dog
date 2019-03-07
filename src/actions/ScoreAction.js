@@ -2,13 +2,18 @@ export const SET_SCORE = 'SET_SCORE'
 export const HANDLE_CORRECT = 'HANDLE_CORRECT'
 export const HANDLE_WRONG = 'HANDLE_WRONG'
 export const RESET_STREAK = 'RESET_STREAK'
+export const LEVEL_SELECT = 'LEVEL_SELECT'
 
 export function setScore(score) {
     return {
         type: SET_SCORE,
-        payload: {
-               score
-        }
+        payload: {score}
+    }
+}
+export function levelSelect(level) {
+    return {
+        type: LEVEL_SELECT,
+        payload: level
     }
 }
 

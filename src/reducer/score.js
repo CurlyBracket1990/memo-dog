@@ -1,4 +1,4 @@
-const initialState = {totalScore: 0, streakCounter: 0, totalQuestions: 0, thingy: [], correctAnswers: 0}
+const initialState = {totalScore: 0, streakCounter: 0, totalQuestions: 0, thingy: [], correctAnswers: 0, level: 1}
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
@@ -28,6 +28,9 @@ export default (state = initialState, action = {}) => {
        streakCounter: 0, 
        }
    )
+  }
+  case "LEVEL_SELECT": {
+    return {...state, level: action.payload}
   }
     default:
       return state
