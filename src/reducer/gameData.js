@@ -1,10 +1,9 @@
-export default (state = [], action = {}) => {
+const initialState = {breeds: [], correctAnswer: {}}
+
+export default (state = initialState, action = {}) => {
     switch (action.type) {
-      case "SET_BREEDS": {
-        return state.concat(action.payload)
-      }
       case "OVERWRITE_BREEDS": {
-        return action.payload
+        return {...state, breeds: action.payload.breeds, correctAnswer: action.payload.correctAnswer}
       }
       default:
         return state
