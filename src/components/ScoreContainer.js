@@ -3,8 +3,6 @@ import Score from './Score'
 import { connect } from 'react-redux'
 import store from '../store'
 import { resetStreak, levelSelect, setScore} from '../actions/ScoreAction';
-import { overWriteBreeds } from '../actions/gameData'
-
 
 class ScoreContainer extends React.Component {
 
@@ -20,7 +18,7 @@ class ScoreContainer extends React.Component {
         if(this.props.score.totalQuestions !== prevProps.score.totalQuestions){
             store.dispatch(setScore(this.calculatePercentage()))
         }
-        if(this.props.score.streakCounter !== prevProps.score.streakCounter && this.props.score.streakCounter === 10) {
+        if(this.props.score.streakCounter !== prevProps.score.streakCounter && this.props.score.streakCounter === 0) {
             this.levelUp(this.props.score.level+1)
         }
     }
@@ -28,7 +26,6 @@ class ScoreContainer extends React.Component {
     levelUp = (num) => {
         store.dispatch(resetStreak())
         store.dispatch(levelSelect(num))
-        store.dispatch(overWriteBreeds(num * 3))
     }
 
     render() {

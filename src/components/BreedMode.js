@@ -70,17 +70,20 @@ export default class BreedMode extends React.Component {
 
                 {this.props.breeds.map((breed, index) =>
                     breed.name === this.state.incorrectAnswer.name ?
-                        <div
-                            style={{ opacity: this.state.opacity }}
-                            key={index + 1}>
-
-                            <input className='answer' ref={(ref) => this[`ref${index + 1}`] = ref} type="button" onClick={this.props.submitAnswer} value={breed.name} />
+                        <div style={{ opacity: this.state.opacity }} key={index + 1}>
+                            <input className='answer' 
+                            ref={(ref) => this[`ref${index + 1}`] = ref} 
+                            type="button" 
+                            onClick={this.props.submitAnswer} 
+                            value={breed.name} />
                         </div>
                         :
-                        <div
-                            key={index + 1} className="answersBox">
-
-                            <input className='answer' ref={(ref) => this[`ref${index + 1}`] = ref} type="button" onClick={this.props.submitAnswer} value={breed.name} />
+                        <div key={index + 1} className="answersBox">
+                            <input className='answer' 
+                            ref={(ref) => this[`ref${index + 1}`] = ref} 
+                            type="button" 
+                            onClick={this.props.submitAnswer} 
+                            value={breed.name} />
                         </div>
                 )}
                 </div>
