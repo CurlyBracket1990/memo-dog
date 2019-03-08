@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-// import store from '../store'
 
 class HintContainer extends React.Component {
     
@@ -23,7 +22,6 @@ const mapStateToProps = (state) => {
     return {
         thingy: state.score.thingy,
         correctAnswer: state.gameData.correctAnswer,
-        breeds: state.gameData.breeds
     }
 }
 

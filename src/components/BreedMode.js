@@ -1,11 +1,9 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
-/* eslint-disable react/jsx-no-comment-textnodes */
 import * as React from 'react'
 import HintContainer from './HintContainer'
 
 export default class BreedMode extends React.Component {
 
-    state = { mode: "pictureMode", opacity: 1, incorrectAnswer: [] }
+    state = { opacity: 1, incorrectAnswer: [] }
 
 
     componentDidUpdate(prevProps){

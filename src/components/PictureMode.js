@@ -3,7 +3,7 @@ import HintContainer from './HintContainer'
 
 export default class PictureMode extends React.Component {
 
-    state = { mode: "pictureMode", opacity: 1, incorrectAnswer: [] }
+    state = { opacity: 1, incorrectAnswer: [] }
 
     componentDidUpdate(prevProps){
         if(this.props.correctAnswer.image !== prevProps.correctAnswer.image){

@@ -126,7 +126,6 @@ class BreedModeContainer extends React.Component {
                     this.props.breedMode &&
                     <BreedMode
                         level={this.props.score.level}
-                        overWriteBreeds={this.overWriteBreeds}
                         correctAnswer={this.props.correctAnswer}
                         breeds={this.shuffle(this.props.breeds.map(a => ({ ...a })))}
                         submitAnswer={this.submitAnswerBreed}
@@ -135,8 +134,6 @@ class BreedModeContainer extends React.Component {
                 {this.props.breeds.length > 0 && !this.props.breedMode &&
                     <PictureMode
                         level={this.props.score.level}
-                        totalQuestions={this.props.score.totalQuestions}
-                        overWriteBreeds={this.overWriteBreeds}
                         correctAnswer={this.props.correctAnswer}
                         breeds={this.shuffle(this.props.breeds.map(a => ({ ...a })))}
                         submitAnswer={this.submitAnswerPicture}
