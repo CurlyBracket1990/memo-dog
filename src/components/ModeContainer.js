@@ -39,9 +39,8 @@ class BreedModeContainer extends React.Component {
     submitAnswerPicture = (e) => {
         store.dispatch(cleanData())
         if (e.target.alt === this.props.correctAnswer.name) {
-            this.overWriteBreeds(this.props.score.level * 3)
             this.nextQuestion("Correct", this.props.correctAnswer.name)
-
+            this.overWriteBreeds(this.props.score.level * 3)
         } else {
             this.togglePopup()
             setTimeout(() => {
@@ -70,10 +69,8 @@ class BreedModeContainer extends React.Component {
     submitAnswerBreedWithKey = (e) => {
         store.dispatch(cleanData())
         if (e.value === this.props.correctAnswer.name) {
-            setTimeout(() => {
                 this.overWriteBreeds(this.props.score.level * 3)
                 this.nextQuestion("Correct", this.props.correctAnswer.name)
-            }, 200)
         } else {
             this.togglePopup()
             setTimeout(() => {
@@ -88,10 +85,8 @@ class BreedModeContainer extends React.Component {
     submitAnswerPictureWithKey = (e) => {
         store.dispatch(cleanData())
         if (e.alt === this.props.correctAnswer.name) {
-            setTimeout(() => {
                 this.overWriteBreeds(this.props.score.level * 3)
                 this.nextQuestion("Correct", this.props.correctAnswer.name)
-            }, 200)
         } else {
             this.togglePopup()
             setTimeout(() => {
