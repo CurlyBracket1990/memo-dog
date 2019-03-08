@@ -7,8 +7,16 @@ export default class BreedMode extends React.Component {
 
     state = { mode: "pictureMode", opacity: 1, incorrectAnswer: [] }
 
+
+    componentDidUpdate(prevProps){
+        if(this.props.correctAnswer.image !== prevProps.correctAnswer.image){
+          this.setState({
+                opacity: 1
+            })
+        }
+    }
+
     componentDidMount() {
-        this.setIncorrect()
         document.addEventListener('keydown', this.handleKeyDown);
     }
 
@@ -16,27 +24,14 @@ export default class BreedMode extends React.Component {
         document.removeEventListener('keydown', this.handleKeyDown);
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.correctAnswer.image !== prevProps.correctAnswer.image) {
-            this.setIncorrect()
-            this.setState({
-                opacity: 1
-            })
-        }
-    }
 
-    setIncorrect = () => {
-        const incorrect = this.props.breeds.filter((breed) =>
-            breed.name !== this.props.correctAnswer.name
-        )
-        this.setState({
-            incorrectAnswer: incorrect[Math.floor(Math.random() * incorrect.length)]
-        })
-    }
 
     hintHighlight = () => {
+        const incorrect = this.props.breeds.filter((breed) =>
+            breed.name !== this.props.correctAnswer.name)
         this.setState({
-            opacity: 0.3
+            opacity: 0.3,
+            incorrectAnswer: incorrect[Math.floor(Math.random() * incorrect.length)]
         })
     }
 
@@ -61,21 +56,25 @@ export default class BreedMode extends React.Component {
                     src={this.props.correctAnswer.image}
                     alt={this.props.correctAnswer.name}
                 />
+          
+                <div className='breedAnswers'> 
+
                 {this.props.breeds.map((breed, index) =>
                     breed.name === this.state.incorrectAnswer.name ?
                         <div
                             style={{ opacity: this.state.opacity }}
-                            key={index + 1} className="answersBox">
+                            key={index + 1}>
 
-                            <input ref={(ref) => this[`ref${index + 1}`] = ref} type="button" onClick={this.props.submitAnswer} value={breed.name} />
+                            <input className='answer' ref={(ref) => this[`ref${index + 1}`] = ref} type="button" onClick={this.props.submitAnswer} value={breed.name} />
                         </div>
                         :
                         <div
                             key={index + 1} className="answersBox">
 
-                            <input ref={(ref) => this[`ref${index + 1}`] = ref} type="button" onClick={this.props.submitAnswer} value={breed.name} />
+                            <input className='answer' ref={(ref) => this[`ref${index + 1}`] = ref} type="button" onClick={this.props.submitAnswer} value={breed.name} />
                         </div>
                 )}
+                </div>
                 <HintContainer hintHighlight={this.hintHighlight} />
             </div>
         )

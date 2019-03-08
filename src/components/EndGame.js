@@ -2,17 +2,19 @@ import * as React from 'react'
 import { Link } from "react-router-dom"
 import { connect } from 'react-redux'
 import { cleanStats } from '../actions/ScoreAction'
+import { cleanData } from '../actions/gameData'
 import store from '../store'
 
 class EndGame extends React.Component {
 
     cleanStats() {
         store.dispatch(cleanStats())
+        store.dispatch(cleanData())
     }
 
     render() {
         return (
-            <div>
+            <div className='endgame'>
                 <p>Thanks for the game!</p>
                 <p>Your score is: {Math.round(this.props.totalScore)}%</p>
                 <p>You've answered {this.props.totalQuestions} questions</p>

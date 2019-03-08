@@ -6,14 +6,10 @@ export default class Score extends React.Component {
         const {correctAnswers, totalQuestions, streakCounter, totalScore} = this.props.score
         return (
             <div className='ScoreBox'>
-                <p>Your score:</p>
-                {Math.round(totalScore)}%
-                <p>Questions:</p>
-                {totalQuestions}
-                <p>Correct answers:</p>
-                {correctAnswers}
-                <p>Streak counter:</p>
-                {streakCounter}
+                <p>Your score: {Math.round(totalScore)}%</p>
+                <p>Questions: {totalQuestions}</p>
+                <p>Correct answers: {correctAnswers}</p>
+                <p>Streak counter: {streakCounter}</p>
             </div>
         )
     }

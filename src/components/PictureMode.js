@@ -5,8 +5,15 @@ export default class PictureMode extends React.Component {
 
     state = { mode: "pictureMode", opacity: 1, incorrectAnswer: [] }
 
+    componentDidUpdate(prevProps){
+        if(this.props.correctAnswer.image !== prevProps.correctAnswer.image){
+           this.setState({
+                opacity: 1
+            })
+        }
+    }
+
     componentDidMount() {
-        this.setIncorrect()
         document.addEventListener('keydown', this.handleKeyDown);
     }
 
@@ -14,27 +21,14 @@ export default class PictureMode extends React.Component {
         document.removeEventListener('keydown', this.handleKeyDown);
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.correctAnswer.image !== prevProps.correctAnswer.image) {
-            this.setIncorrect()
-            this.setState({
-                opacity: 1
-            })
-        }
-    }
 
-    setIncorrect = () => {
+    hintHighlight = () => {
         const incorrect = this.props.breeds.filter((breed) =>
             breed.name !== this.props.correctAnswer.name
         )
         this.setState({
+            opacity: 0.3,
             incorrectAnswer: incorrect[Math.floor(Math.random() * incorrect.length)]
-        })
-    }
-
-    hintHighlight = () => {
-        this.setState({
-            opacity: 0.3
         })
     }
 
@@ -58,11 +52,11 @@ export default class PictureMode extends React.Component {
                 {this.props.breeds
                     .map((breed, index) =>
                         breed.name === this.state.incorrectAnswer.name ?
-                            <img ref={(ref) => this[`ref${index + 1}`] = ref}
+                            <img className='answer' ref={(ref) => this[`ref${index + 1}`] = ref}
                                 style={{ opacity: this.state.opacity }}
                                 onClick={this.props.submitAnswer} key={index + 1} alt={breed.name} src={breed.image} />
                             :
-                            <img onKeyPress={this.handleKeyPress} ref={(ref) => this[`ref${index + 1}`] = ref}
+                            <img className='answer' onKeyPress={this.handleKeyPress} ref={(ref) => this[`ref${index + 1}`] = ref}
                                 onClick={this.props.submitAnswer} key={index + 1} alt={breed.name} src={breed.image}
                             />)}
                 <HintContainer hintHighlight={this.hintHighlight} />
