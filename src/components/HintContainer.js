@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 class HintContainer extends React.Component {
     
     render() {
-        console.log("Hint rendered")
         return (
             !this.props.thingy.includes(this.props.correctAnswer.name) &&
             <div className="hint-button">
