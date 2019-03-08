@@ -36,16 +36,27 @@ export default class BreedMode extends React.Component {
     }
 
     handleKeyDown = (e) => {
-        if (e.key === "1") {
-            this.props.submitAnswerWithKey(this.ref1)
+        if (this.props.level === 1) {
+            for (let i = 1; i < 4; i++) {
+                if (e.key === i.toString()) {
+                    this.props.submitAnswerWithKey(this[`ref${i}`])
+                }
+            }
         }
-        if (e.key === "2") {
-            this.props.submitAnswerWithKey(this.ref2)
+        if (this.props.level === 2) {
+            for (let i = 1; i < 7; i++) {
+                if (e.key === i.toString()) {
+                    this.props.submitAnswerWithKey(this[`ref${i}`])
+                }
+            }
         }
-        if (e.key === "3") {
-            this.props.submitAnswerWithKey(this.ref3)
+        if (this.props.level === 3) {
+            for (let i = 1; i < 10; i++) {
+                if (e.key === i.toString()) {
+                    this.props.submitAnswerWithKey(this[`ref${i}`])
+                }
+            }
         }
-        return null
     }
 
     render() {
