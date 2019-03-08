@@ -4,13 +4,6 @@ Learn all of the dog breeds with this interactive game.
 
 Check out the [demo](https://memo-dog.netlify.com/)!
 
-## Table of Contents 
-
-- [Installation](#installation)
-- [Features](#features)
-- [Contributing](#contributing)
-- [Team](#team)
-
 ---
 
 ## Installation
