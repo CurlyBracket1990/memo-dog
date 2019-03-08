@@ -5,34 +5,23 @@ export default class PictureMode extends React.Component {
 
     state = { mode: "pictureMode", opacity: 1, incorrectAnswer: [] }
 
-    componentDidMount() {
-        this.setIncorrect()
-    }
-
     componentDidUpdate(prevProps){
         if(this.props.correctAnswer.image !== prevProps.correctAnswer.image){
-            this.setIncorrect()
             this.setState({
                 opacity: 1
             })
         }
     }
 
-    setIncorrect = () => {
+    hintHighlight = () => {
         const incorrect = this.props.breeds.filter((breed) =>
             breed.name !== this.props.correctAnswer.name
         )
         this.setState({
+            opacity: 0.3,
             incorrectAnswer: incorrect[Math.floor(Math.random() * incorrect.length)]
         })
     }
-
-    hintHighlight = () => {
-        this.setState({
-            opacity: 0.3
-        })
-    }
-
 
     render() {
         return (
@@ -41,10 +30,10 @@ export default class PictureMode extends React.Component {
                 {this.props.breeds
                     .map((breed, index) =>
                         breed.name === this.state.incorrectAnswer.name ?
-                        <img style={{ opacity: this.state.opacity }} 
+                        <img className='answer' style={{ opacity: this.state.opacity }} 
                         onClick={this.props.submitAnswer} key={index + 1} alt={breed.name} src={breed.image} />
                         :
-                        <img onClick={this.props.submitAnswer} key={index + 1} alt={breed.name} src={breed.image}
+                        <img className='answer' onClick={this.props.submitAnswer} key={index + 1} alt={breed.name} src={breed.image}
                         />)}
                 <HintContainer hintHighlight={this.hintHighlight}/>
             </div>
