@@ -67,6 +67,36 @@ class BreedModeContainer extends React.Component {
         }
     }
 
+    submitAnswerBreedWithKey = (e) => {
+        if (e.value === this.props.correctAnswer.name) {
+            setTimeout(() => {
+                this.overWriteBreeds(this.props.score.level * 3)
+                this.nextQuestion("Correct", this.props.correctAnswer.name)
+            }, 200)
+        } else {
+            setTimeout(() => {
+                this.overWriteBreeds(this.props.score.level * 3)
+                this.nextQuestion("Wrong", this.props.correctAnswer.name)
+            }, 200)
+        }
+        return null
+    }
+
+    submitAnswerPictureWithKey = (e) => {
+        if (e.alt === this.props.correctAnswer.name) {
+            setTimeout(() => {
+                this.overWriteBreeds(this.props.score.level * 3)
+                this.nextQuestion("Correct", this.props.correctAnswer.name)
+            }, 200)
+        } else {
+            setTimeout(() => {
+                this.overWriteBreeds(this.props.score.level * 3)
+                this.nextQuestion("Wrong", this.props.correctAnswer.name)
+            }, 200)
+        }
+        return null
+    }
+
     shuffle = (array) => {
         let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -83,7 +113,6 @@ class BreedModeContainer extends React.Component {
     }
 
 
-
     render() {
         return (
             <div>
@@ -95,8 +124,9 @@ class BreedModeContainer extends React.Component {
                         correctAnswer={this.props.correctAnswer}
                         breeds={this.shuffle(this.props.breeds.map(a => ({ ...a })))}
                         submitAnswer={this.submitAnswerBreed}
+                        submitAnswerWithKey={this.submitAnswerBreedWithKey}
                     />}
-                {this.props.breeds.length > 0 &&!this.props.breedMode && 
+                {this.props.breeds.length > 0 && !this.props.breedMode && 
                     <PictureMode
                         level={this.props.score.level}
                         totalQuestions={this.props.score.totalQuestions}
@@ -104,6 +134,7 @@ class BreedModeContainer extends React.Component {
                         correctAnswer={this.props.correctAnswer}
                         breeds={this.shuffle(this.props.breeds.map(a => ({ ...a })))}
                         submitAnswer={this.submitAnswerPicture}
+                        submitAnswerWithKey={this.submitAnswerPictureWithKey}
                     />}
                {this.state.showPopup ? 
           <PopUp correctAnswer={this.props.correctAnswer}
