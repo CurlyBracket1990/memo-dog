@@ -7,7 +7,7 @@ class HintContainer extends React.Component {
         return (
             !this.props.thingy.includes(this.props.correctAnswer.name) &&
             <div className="hint-button">
-                <button type="button"
+                <button className='hintBtn' type="button"
                     onClick={this.props.hintHighlight}>
                     Hint
             </button>

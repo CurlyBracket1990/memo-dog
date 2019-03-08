@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <header><h1>Dog memo game</h1></header>
+          <header><h1>Guess the breed game!</h1></header>
 
           <main>
           <Route exact path="/" component={Landing} />
