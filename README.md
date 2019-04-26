@@ -1,3 +1,7 @@
+# This is our result for the first project week (week 4) of the Codaisseur Academy.
+
+The goal was to build an app where people could test their knowledge of dog breeds by either seeing a picture of a breed and guess the name, or click the right picture for a specific breed.
+
 # Dog Memo Game
 Test your doggo knowledge!
 Learn all of the dog breeds with this interactive game. 
